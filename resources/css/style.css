@@ -1,0 +1,112 @@
+/* ==========IMPORT FONTS========== */
+
+
+/* ==========VARIABLE CSS========== */
+:root {
+
+  /* ==========colors========== */
+  --container-color: #fff;
+  --body-color: #999;
+  --input-color: #555;
+  --text-color: #222;
+  --accent-color: purple;
+
+
+  /* ==========font and typography========== */
+  --body-font: sans-serif;
+
+  --small-text-size: .7rem;
+  --medium-text-size: 1.5rem;
+  --big-text-size: 4rem;
+
+  /* ==========font weight========== */
+  --font-medium: 400;
+  --font-bold: 700;
+
+}
+
+/* ==========font size for smaller devices========== */
+  @media screen and (max-width: 600px)  {
+    :root {
+      --mobile-small-text-size: 0.25rem;
+      --mobile-medium-text-size: .45rem;
+      --mobile-big-text-size: .8rem;
+    }
+  }
+
+/* ==========BASE========== */  
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--small-text-size);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+p {
+  color: var(--accent-color);
+  margin-right: .5rem;
+}
+
+/* ==========LAYOUT========== */
+
+.container {
+  width: 40%;
+  background-color: var(--container-color);
+  margin: 6rem auto;
+  padding: 2rem;
+  border-radius: .5rem .5rem 5rem .5rem;
+}
+
+.input__container {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.input {
+  margin-right: 1.5rem;
+}
+
+.input label {
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+}
+
+.input input {
+  margin-top: 0.3rem;
+  width: 7rem;
+  height: 3rem;
+  display: block;
+  border-radius: .3rem;
+  border: 1px solid var(--input-color);
+  color: var(--text-color);
+  font-size: var(--medium-text-size);
+  font-weight: var(--font-bold);
+  padding-left: 1rem;
+}
+
+/* .divider__container {
+  display: flex;
+} */
+
+.svg__image {
+  display: inline-flex;
+  flex: left;
+}
+
+.result__container {
+  margin-top: 3rem;
+  font-size: var(--big-text-size);
+  font-weight: var(--font-bold);
+}
+
+.data__display {
+  display: flex;
+}
+
+

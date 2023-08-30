@@ -24,24 +24,27 @@
       <div class="input" id="input">
         <label for="day" class="data__label" id="day-label">Day</label>
         <input type="text" id="day-input" name="day" placeholder="DD">
+        <span class="error__msg" id="error-msg"></span>
       </div>
 
       <!-- SECOND INPUT -->
       <div class="input" id="input">
         <label for="month" class="data__label" id="month-label">Month</label>
         <input type="text" id="month-input" name="month" placeholder="MM">
+        <span class="error__msg" id="error-msg"></span>
       </div>
 
       <!-- THIRD INPUT -->
       <div class="input" id="input">
         <label for="year" class="data__label" id="year-label">Year</label>
         <input type="text" id="year-input" name="year" placeholder="YYYY">
+        <span class="error__msg" id="error-msg">this field is required</span>
       </div>
     </div>
 
     <div class="divider__container">
-      <hr>
-      <svg class="svg__image" xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
+      <div class="horizontal__line"></div>
+      <svg class="svg__image" xmlns="http://www.w3.org/2000/svg" id="svg-img" viewBox="0 0 46 44" width="44" height="44" overflow="visible"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
     </div>
 
     <div class="result__container">

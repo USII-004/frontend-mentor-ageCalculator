@@ -1,27 +1,3 @@
-/*====================== VARIABLES  ===================*/ 
-
-const dayInput = document.getElementById('day-input'),
-      monthInput = document.getElementById('month-input'),
-      yearInput = document.getElementById('year-input'),
-
-      dayLabel = document.getElementById('day-label'),
-      monthLabel = document.getElementById('month-label'),
-      yearLabel = document.getElementById('year-label'),
-
-      dayErrorMsg = document.getElementById('day-error-msg'),
-      monthErrorMsg = document.getElementById('month-error-msg'),
-      yearErrorMsg = document.getElementById('year-error-msg'),
-
-      yearDisplay = document.getElementById('years-display'),
-      monthDisplay = document.getElementById('months-display'),
-      dayDisplay = document.getElementById('days-display'),
-
-      year = yearInput.value,
-      month = monthInput.value,
-      day = dayInput.value,
-      birthDate = `${year}-${month}-${day}`
-
-
 /*====================== CALCULATE AGE ===================*/
 // retrive input values
 
@@ -59,7 +35,30 @@ function calculateAge(birthDate) {
     days,
   };
 }
-      
+
+/*====================== VARIABLES  ===================*/ 
+
+const dayInput = document.getElementById('day-input'),
+      monthInput = document.getElementById('month-input'),
+      yearInput = document.getElementById('year-input'),
+
+      dayLabel = document.getElementById('day-label'),
+      monthLabel = document.getElementById('month-label'),
+      yearLabel = document.getElementById('year-label'),
+
+      dayErrorMsg = document.getElementById('day-error-msg'),
+      monthErrorMsg = document.getElementById('month-error-msg'),
+      yearErrorMsg = document.getElementById('year-error-msg'),
+
+      yearDisplay = document.getElementById('years-display'),
+      monthDisplay = document.getElementById('months-display'),
+      dayDisplay = document.getElementById('days-display'),
+
+      year = yearInput.value,
+      month = monthInput.value,
+      day = dayInput.value,
+      birthDate = `${year}-${month}-${day}`
+
       
 /*====================== EMPTY FIELD VERIFICATION ===================*/
 

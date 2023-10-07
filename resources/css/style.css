@@ -1,36 +1,37 @@
 /* ==========IMPORT FONTS========== */
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap');
 
 /* ==========VARIABLE CSS========== */
 :root {
 
   /* ==========colors========== */
-  --container-color: #fff;
-  --body-color: #999;
-  --input-color: #555;
-  --text-color: #222;
-  --accent-color: purple;
-  --error-color: red;
+  --container-color: hsl(0, 0%, 100%);
+  --body-color: hsl(0, 0%, 86%);
+  --input-color: hsl(0, 1%, 44%);
+  --text-color: hsl(0, 0%, 8%);
+  --accent-color: hsl(259, 100%, 65%);
+  --error-color: hsl(0, 100%, 67%);
 
   /* ==========font and typography========== */
-  --body-font: sans-serif;
+  --body-font: 'Poppins', sans-serif;;
 
-  --small-text-size: .7rem;
-  --medium-text-size: 1.5rem;
-  --big-text-size: 4rem;
+  --small-text-size: .65rem;
+  --medium-text-size: 1rem;
+  --big-text-size: 3rem;
 
   /* ==========font weight========== */
   --font-medium: 400;
   --font-bold: 700;
+  --font-extra-bold: 800;
 
 }
 
 /* ==========font size for smaller devices========== */
-  @media screen and (max-width: 600px)  {
+  @media screen and (min-width: 550px)  {
     :root {
-      --mobile-small-text-size: 0.25rem;
-      --mobile-medium-text-size: .45rem;
-      --mobile-big-text-size: .8rem;
+      --desktop-small-text-size: .85rem;
+      --desktop-medium-text-size: 1.5rem;
+      --desktop-big-text-size: 4.5rem;
     }
   }
 
@@ -42,8 +43,6 @@
 }
 
 body {
-  font-family: var(--body-font);
-  font-size: var(--small-text-size);
   background-color: var(--body-color);
   color: var(--text-color);
 }
@@ -56,11 +55,13 @@ p {
 /* ==========LAYOUT========== */
 
 .container {
-  width: 40%;
+  width: 90%;
   background-color: var(--container-color);
-  margin: 6rem auto;
-  padding: 2rem;
+  margin: 4rem auto;
+  padding: 1.5rem;
   border-radius: .5rem .5rem 5rem .5rem;
+  font-family: var(--body-font);
+  font-size: var(--small-text-size);
 }
 
 .input__container {
@@ -68,12 +69,13 @@ p {
 }
 
 .input {
-  margin-right: 1.5rem;
+  margin-right: .7rem;
 }
 
 .input label {
   font-weight: var(--font-bold);
   text-transform: uppercase;
+  color: var(--input-color);
 }
 
 .error__state__color{
@@ -86,14 +88,17 @@ p {
 
 .input input {
   margin: 0.3rem 0;
-  width: 7rem;
-  height: 3rem;
+  width: 100%;
+  height: 2.5rem;
   display: block;
   border-radius: .3rem;
   color: var(--text-color);
   font-size: var(--medium-text-size);
   font-weight: var(--font-bold);
-  padding-left: 1rem;
+  padding-left: .5rem;
+  &:hover {
+    border-color: var(--accent-color);
+  }
 }
 
 .input__correct__state {
@@ -104,35 +109,94 @@ p {
   border: 1px solid var(--error-color);
 }
 
-.divider__container {
+.mobile__divider {
   display: grid;
-  grid-template-columns: 82% 18%;
-  gap: 5px;
+  grid-template-columns: 42.5% 15% 42.5%;
+  margin: 1.2rem 0;
 }
+
+.desktop__divider {
+  display: none;
+}
+
 
 .horizontal__line {
   width: 100%;
   height: 1px;
   background-color: #555;
-  margin-top: 22px;
+  align-self: center;
 }
 
 .svg__image {
+  width: 100%;
+  height: 100%;
   background-color: var(--accent-color);
-  padding: 2px;
   border-radius: 50%;
   padding: 7px;
-  cursor: pointer;
+  margin: 0;
+  &:hover {
+    background-color: var(--text-color);
+  }
 }
 
 .result__container {
   margin-top: 1rem;
   font-size: var(--big-text-size);
-  font-weight: var(--font-bold);
+  font-weight: var(--font-extra-bold);
+  font-style: italic;
 }
 
 .data__display {
   display: flex;
 }
 
+.svg__btn {
+  height: 50px;
+  width: 50px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+}
+
+
+@media screen and (min-width: 550px) {
+  .container {
+    width: 40%;
+    margin: 4rem auto;
+  }
+
+  .input {
+    margin-right: 1.2rem;
+  }
+
+  .input input {
+    width: 7rem;
+    margin: 0.5rem 0;
+    height: 2.7rem;
+    display: block;
+    border-radius: .3rem;
+    color: var(--text-color);
+    font-size: var(--desktop-medium-text-size);
+    font-weight: var(--font-bold);
+    padding-left: .8rem;
+  }
+
+  .mobile__divider {
+    display: none;
+  }
+  
+  .desktop__divider {
+    display: grid;
+    grid-template-columns: 85% 15%;
+    margin: 0;
+  }
+
+  .result__container {
+    margin-top: 1rem;
+    font-size: var(--desktop-big-text-size);
+  }
+}
 

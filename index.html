@@ -12,7 +12,7 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
+    .attribution { font-size: 11px; text-align: center;}
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 </head>
@@ -43,8 +43,19 @@
     </div>
 
     <div class="divider__container">
-      <div class="horizontal__line"></div>
-      <svg class="svg__image" xmlns="http://www.w3.org/2000/svg" id="svg-img" viewBox="0 0 46 44" width="44" height="44" overflow="visible"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
+      <div class="mobile__divider">
+        <div class="horizontal__line"></div>
+        <button class="svg__btn" id="svg-btn">
+          <svg class="svg__image" xmlns="http://www.w3.org/2000/svg" id="svg-img" viewBox="0 0 46 44" width="44" height="44" overflow="visible"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
+        </button>
+        <div class="horizontal__line"></div>
+      </div>
+      <div class="desktop__divider">
+        <div class="horizontal__line"></div>
+        <button class="svg__btn" id="desktop-svg-btn">
+          <svg class="svg__image" xmlns="http://www.w3.org/2000/svg" id="svg-img" viewBox="0 0 46 44" width="44" height="44" overflow="visible"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
+        </button>
+      </div>
     </div>
 
     <div class="result__container">
@@ -64,23 +75,10 @@
       </div>
     </div>
   </div>
-
-  <!-- Day
-  DD
-
-  Month
-  MM
-
-  Year
-  YYYY
-
-  -- years
-  -- months
-  -- days -->
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="https://github.com/USII-004">Usman Awwal</a>.
   </div>
 
   <script src="resources/js/validate.js"></script>

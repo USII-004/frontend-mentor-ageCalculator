@@ -166,10 +166,10 @@ submitButton.addEventListener('click', () => {
   const age = calculateAge(birthDate)
 
   // display age
+  yearDisplay.innerText = `${age.years}`
+  monthDisplay.innerText = `${age.months}`
+  dayDisplay.innerText = `${age.days}`
   // Use countUpToValue function to animate counting up
-  countUpToValue(yearDisplay, age.years, 1000); // 1000ms (1 second) animation duration
-  countUpToValue(monthDisplay, age.months, 1000); // 1000ms (1 second) animation duration
-  countUpToValue(dayDisplay, age.days, 1000); // 1000ms (1 second) animation duration
 })
 
 desktopSubmitButton.addEventListener('click', () => {

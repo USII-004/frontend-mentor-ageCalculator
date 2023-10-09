@@ -53,9 +53,9 @@ function isValidDate(year, month, day) {
       return day <= 29;
     }
     return day <= 28;
+  }else {
+    return day <= daysInMonth[month];
   }
-
-  day <= daysInMonth[month];
 }
 
 

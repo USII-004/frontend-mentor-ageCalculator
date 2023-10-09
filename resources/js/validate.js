@@ -63,7 +63,7 @@ function isValidDate(year, month, day) {
 function showError (label, input, errorMsg, message) {
   label.classList.remove('correct__state__color');
   label.classList.add('error__state__color');
-  input.classList.remove('input__error__state');
+  input.classList.add('input__error__state');
   errorMsg.innerText = message;
 }
 

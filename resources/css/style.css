@@ -75,6 +75,9 @@ p {
 .input label {
   font-weight: var(--font-bold);
   text-transform: uppercase;
+}
+
+.correct__state__color{
   color: var(--input-color);
 }
 
@@ -84,6 +87,7 @@ p {
 
 .error__msg {
   font-style: italic;
+  color: var(--error-color);
 }
 
 .input input {

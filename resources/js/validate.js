@@ -1,6 +1,4 @@
-
-
-/*====================== VARIABLES  ===================*/ 
+/*====================== ELEMENTS  ===================*/ 
 
 const dayInput = document.getElementById('day-input'),
       monthInput = document.getElementById('month-input'),
@@ -20,60 +18,64 @@ const dayInput = document.getElementById('day-input'),
       submitButton = document.getElementById('svg-btn'),
       desktopSubmitButton = document.getElementById('desktop-svg-btn')
 
-/*====================== EMPTY FIELD VERIFICATION ===================*/
 
-dayInput.addEventListener('change', () => {
-  if(dayInput.value == "") {
-    dayLabel.classList.add('error__state__color')
-    dayInput.classList.add('input__error__state')
-    dayErrorMsg.classList.add('error__state__color')
-    dayErrorMsg.innerText = 'This field is required'
-  }else {
-    dayLabel.classList.remove('error__state__color')
-    dayInput.classList.remove('input__error__state')
-    dayErrorMsg.classList.remove('error__state__color')
-    dayErrorMsg.innerText = ''
+// Array to store the number of days in each month (0 index-based)
+const daysInMonth = [
+0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+];
+
+/*====================== COUNT UP THE VALUE ===================*/
+function countUpToValue(targetElement, targetValue, duration) {
+  const startValue = 0;
+  const startTime = performance.now();
+
+  function animate(now) {
+    const progress = (now - startTime) / duration;
+    const currentValue = Math.floor(startValue + progress * (targetValue - startValue));
+    targetElement.innerText = currentValue;
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
   }
-})
 
-monthInput.addEventListener('change', () => {
-  if(monthInput.value == "") {
-    monthLabel.classList.add('error__state__color')
-    monthInput.classList.add('input__error__state')
-    monthErrorMsg.classList.add('error__state__color')
-    monthErrorMsg.innerText = 'This field is required'
-  }else if (monthInput.value < 1 || monthInput.value > 12) {
-    monthLabel.classList.add('error__state__color')
-    monthInput.classList.add('input__error__state')
-    monthErrorMsg.classList.add('error__state__color')
-    monthErrorMsg.innerText = 'Please enter a valid month'
-  }else {
-    monthLabel.classList.remove('error__state__color')
-    monthInput.classList.remove('input__error__state')
-    monthErrorMsg.classList.remove('error__state__color')
-    monthErrorMsg.innerText = ''
+  requestAnimationFrame(animate);
+}
+
+/*====================== LEAP YEAR ===================*/
+function isLeapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+}
+
+function isValidDate(year, month, day) {
+  if (month === 2 ) {
+    if(isLeapYear(year)) {
+      return day <= 29;
+    }
+    return day <= 28;
   }
-  
-})
 
-yearInput.addEventListener('change', () => {
-  if(yearInput.value == "") {
-    yearLabel.classList.add('error__state__color')
-    yearInput.classList.add('input__error__state')
-    yearErrorMsg.classList.add('error__state__color')
-    yearErrorMsg.innerText = 'This field is required'
-  }else {
-    yearLabel.classList.remove('error__state__color')
-    yearInput.classList.remove('input__error__state')
-    yearErrorMsg.classList.remove('error__state__color')
-    yearErrorMsg.innerText = ''
-    
-  }
-})
+  day <= daysInMonth[month];
+}
 
-/*====================== CALCULATE AGE ===================*/
-// retrive input values
 
+/*====================== SHOW ERROR ===================*/
+function showError (label, input, errorMsg, message) {
+  label.classList.remove('correct__state__color');
+  label.classList.add('error__state__color');
+  input.classList.remove('input__error__state');
+  errorMsg.innerText = message;
+}
+
+/*====================== CLEAR ERROR ===================*/
+function clearError (label, input, errorMsg) {
+  label.classList.remove('error__state__color');
+  label.classList.add('correct__state__color');
+  input.classList.remove('input__error__state');
+  errorMsg.innerText = '';
+}
+
+/*====================== CALCULATE AGE ===================*/     
 const currentDate = new Date();
 
 function calculateAge(props) {
@@ -109,111 +111,52 @@ function calculateAge(props) {
   };
 }
 
-/*====================== COUNT UP THE VALUE ===================*/
-function countUpToValue(targetElement, targetValue, duration) {
-  const startValue = 0;
-  const intervalTime = Math.abs(Math.floor(duration / (targetValue - startValue)));
-  let currentValue = startValue;
-  let interval = null;
+/*====================== BUTTON CLICK HANDLER ===================*/
+function handleButtonClick() {
+  event.preventDefault();
+  if (dayInput.value === "" || dayInput.value < 1 || dayInput.value > 31) {
+    showError(dayLabel, dayInput, dayErrorMsg, 'please enter a valid day between 1 and 31');
+    return;
+  }else {
+    clearError(dayLabel, dayInput, dayErrorMsg);
+  }
 
-  interval = setInterval(() => {
-    currentValue++;
+  if (monthInput.value === "" || monthInput.value < 1 || monthInput.value > 12) {
+    showError(monthLabel, monthInput, monthErrorMsg, 'please enter a valid month between 1 and 12');
+    return;
+  }else {
+    clearError(monthLabel, monthInput, monthErrorMsg);
+  }
+  
+  if (yearInput.value === "" || yearInput.value < 1900 || yearInput.value > currentDate.getFullYear()) {
+    showError(yearLabel, yearInput, yearErrorMsg, 'please enter a valid year between 1900 and current year');
+    return;
+  }else {
+    clearError(yearLabel, yearInput, yearErrorMsg);
+  }
 
-    // Update the target element with the current value
-    targetElement.innerText = currentValue;
+  const year = parseInt(yearInput.value, 10);
+  const month = parseInt(monthInput.value, 10);
+  const day = parseInt(dayInput.value, 10);
 
-    if (currentValue === targetValue) {
-        clearInterval(interval);
-    }
-  }, intervalTime);
+  if (!isValidDate(year, month, day)) {
+    showError(dayLabel, dayInput, dayErrorMsg, 'please enter a valid date');
+    return;
+  }else {
+    clearError(dayLabel, dayInput, dayErrorMsg);
+  }
+
+  const birthDate = new Date(year, month - 1, day);
+  const age = calculateAge(birthDate);
+
+  countUpToValue(yearDisplay, age.years, 1000);
+  countUpToValue(monthDisplay, age.months, 1000);
+  countUpToValue(dayDisplay, age.days, 1000);
 }
 
-submitButton.addEventListener('click', () => {
-  const year = yearInput.value
-  const month = monthInput.value
-  const day = dayInput.value
 
-  // Array to store the number of days in each month (0 index-based)
-  const daysInMonth = [
-    0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
-  ];
+submitButton.addEventListener('click', handleButtonClick)
 
-  // Adjust February days for leap years
-  if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
-    daysInMonth[2] = 29;
-  }
+desktopSubmitButton.addEventListener('click', handleButtonClick)
 
-  if (day < 1 || day > daysInMonth[month]) {
-    dayLabel.classList.add('error__state__color')
-    dayInput.classList.add('input__error__state')
-    dayErrorMsg.classList.add('error__state__color')
-    dayErrorMsg.innerText = 'Please enter a valid month'
-
-    return;
-  }
-  
-  if (year > currentDate.getFullYear()) {
-    yearLabel.classList.add('error__state__color')
-    yearInput.classList.add('input__error__state')
-    yearErrorMsg.classList.add('error__state__color')
-    yearErrorMsg.innerText = 'Please input a year that is not in the future'
-
-    return;
-  } 
-  // create birthdate string using the input vlues above
-  const birthDate = `${year}-${month}-${day}`
-
-  // calculate age
-  const age = calculateAge(birthDate)
-
-  // display age
-  // Use countUpToValue function to animate counting up
-  countUpToValue(yearDisplay, age.years, 1000); // 1000ms (1 second) animation duration
-  countUpToValue(monthDisplay, age.months, 1000); // 1000ms (1 second) animation duration
-  countUpToValue(dayDisplay, age.days, 1000); // 1000ms (1 second) animation duration
-})
-
-desktopSubmitButton.addEventListener('click', () => {
-  const year = yearInput.value
-  const month = monthInput.value
-  const day = dayInput.value
-
-  // Array to store the number of days in each month (0 index-based)
-  const daysInMonth = [
-    0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
-  ];
-
-  // Adjust February days for leap years
-  if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
-    daysInMonth[2] = 29;
-  }
-
-  if (day < 1 || day > daysInMonth[month]) {
-    dayLabel.classList.add('error__state__color')
-    dayInput.classList.add('input__error__state')
-    dayErrorMsg.classList.add('error__state__color')
-    dayErrorMsg.innerText = 'Please enter a valid month'
-
-    return;
-  }
-  
-  if (year > currentDate.getFullYear()) {
-    yearLabel.classList.add('error__state__color')
-    yearInput.classList.add('input__error__state')
-    yearErrorMsg.classList.add('error__state__color')
-    yearErrorMsg.innerText = 'Please input a year that is not in the future'
-
-    return;
-  } 
-  // create birthdate string using the input vlues above
-  const birthDate = `${year}-${month}-${day}`
-
-  // calculate age
-  const age = calculateAge(birthDate)
-
-  // display age
-  // Use countUpToValue function to animate counting up
-  countUpToValue(yearDisplay, age.years, 1000); // 1000ms (1 second) animation duration
-  countUpToValue(monthDisplay, age.months, 1000); // 1000ms (1 second) animation duration
-  countUpToValue(dayDisplay, age.days, 1000); // 1000ms (1 second) animation duration
-})
+// the function above do not correctly handle leap years as it accepts 29 days for february in all years

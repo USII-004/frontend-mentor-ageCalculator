@@ -139,6 +139,20 @@ function handleButtonClick() {
   const month = parseInt(monthInput.value, 10);
   const day = parseInt(dayInput.value, 10);
 
+  if (year === currentDate.getFullYear() && month > currentDate.getMonth() + 1) {
+    showError(monthLabel, monthInput, monthErrorMsg, 'please enter a valid month');
+    return;
+  }else {
+    clearError(monthLabel, monthInput, monthErrorMsg);
+  }
+
+  if (year === currentDate.getFullYear() && month === currentDate.getMonth() + 1 && day > currentDate.getDate()) {
+    showError(dayLabel, dayInput, dayErrorMsg, 'please enter a valid date');
+    return;
+  }else {
+    clearError(dayLabel, dayInput, dayErrorMsg);
+  }
+
   if (!isValidDate(year, month, day)) {
     showError(dayLabel, dayInput, dayErrorMsg, 'please enter a valid date');
     return;

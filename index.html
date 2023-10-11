@@ -18,30 +18,31 @@
 </head>
 <body>
   <div class="container" id="container">
-    <div class="input__container">
+      <form action="">
+        <div class="input__container">
+          <!-- FIRST INPUT -->
+          <div class="input">
+            <label for="day" class="data__label correct__state__color" id="day-label">Day</label>
+            <input type="number" class="input__correct__state" id="day-input" name="day" placeholder="DD">
+            <span class="error__msg" id="day-error-msg"></span>
+          </div>
 
-      <!-- FIRST INPUT -->
-      <div class="input">
-        <label for="day" class="data__label correct__state__color" id="day-label">Day</label>
-        <input type="number" class="input__correct__state" id="day-input" name="day" placeholder="DD">
-        <span class="error__msg" id="day-error-msg"></span>
-      </div>
+          <!-- SECOND INPUT -->
+          <div class="input">
+            <label for="month" class="data__label correct__state__color" id="month-label">Month</label>
+            <input type="number" class="input__correct__state" id="month-input" name="month" placeholder="MM">
+            <span class="error__msg" id="month-error-msg"></span>
+          </div>
 
-      <!-- SECOND INPUT -->
-      <div class="input">
-        <label for="month" class="data__label correct__state__color" id="month-label">Month</label>
-        <input type="number" class="input__correct__state" id="month-input" name="month" placeholder="MM">
-        <span class="error__msg" id="month-error-msg"></span>
-      </div>
-
-      <!-- THIRD INPUT -->
-      <div class="input">
-        <label for="year" class="data__label correct__state__color" id="year-label">Year</label>
-        <input type="number" class="input__correct__state" id="year-input" name="year" placeholder="YYYY">
-        <span class="error__msg" id="year-error-msg"></span>
-      </div>
-    </div>
-
+          <!-- THIRD INPUT -->
+          <div class="input">
+            <label for="year" class="data__label correct__state__color" id="year-label">Year</label>
+            <input type="number" class="input__correct__state" id="year-input" name="year" placeholder="YYYY">
+            <span class="error__msg" id="year-error-msg"></span>
+          </div>
+        </div>
+      </form>
+      
     <div class="divider__container">
       <div class="mobile__divider">
         <div class="horizontal__line"></div>
